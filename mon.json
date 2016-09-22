@@ -1,0 +1,110 @@
+{
+    "badgemon": [
+        {
+            "name": "Honey Badger",
+            "bio": "blah blah blah blah",
+            "tier": 1,
+            "stats": {
+                "mobility": 7,
+                "statistics": 7,
+                "humour": 7,
+                "logic": 10,
+                "agency": 8
+            },
+            "messages": {
+                "specific": {
+                    "statistics": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        },
+        {
+            "name": "Karen",
+            "bio": "blah blah other badger",
+            "tier": 5,
+            "stats": {
+                "mobility": 8,
+                "statistics": 6,
+                "humour": 4,
+                "logic": 8,
+                "agency": 7
+            },
+            "messages": {
+                "specific": {
+                    "statistics": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        }
+    ],
+    "femmemon": [
+        {
+            "name": "Big Red",
+            "bio": "waah waah patriarchy",
+            "stats": {
+                "volume": 8,
+                "mobility": 2,
+                "anecdote": 10,
+                "insult": 8,
+                "outrage": 7,
+                "damsel": 7
+            },
+            "messages": {
+                "specific": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "fatalities": {
+                    "statistics": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                }
+            }
+        },
+        {
+            "name": "Trigglypuff",
+            "bio": "r'specht muh authoritah",
+            "stats": {
+                "volume": 10,
+                "mobility": 1,
+                "anecdote": 8,
+                "insult": 7,
+                "outrage": 4,
+                "damsel": 6
+            },
+            "messages": {
+                "specific": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "fatalities": {
+                    "statistics": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                }
+            }
+        }
+    ]
+}

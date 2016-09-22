@@ -1,0 +1,29 @@
+{
+    "generic": {
+        "statistics": [
+            "%bname% pulls up a sheet of peer reviewed statistics and reads some off to disprove %fname%."
+        ],
+        "humour": [
+            "Humourous messages go here"
+        ],
+        "logic": [
+            "%bname% uses logic.",
+            "%bname% other message"
+        ],
+        "agency": [
+            "Agency \"messages\" go here"
+        ],
+        "anecdote": [
+            "Anecdotal messages go here"
+        ],
+        "insult": [
+            "Insulting messages go here"
+        ],
+        "outrage": [
+            "Outrageous messages go here"
+        ],
+        "damsel": [
+            "Damsel messages go here"
+        ]
+    }
+}
