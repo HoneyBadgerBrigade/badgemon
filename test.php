@@ -1,11 +1,29 @@
 <?php
+    /*
+    System: Stats are compared against each other, stats versus each other in the current format:
+    Statistics vs anecdote
+    Humour vs insult
+    Logic vs outrage
+    Agency vs damsel
+
+    Both have Volume and Mobility stats, volume is a multiplier which applies to other stats, and mobility acts as initiative.
+    Mobility for fememons are part of each 'mon and still act as the initiative. Mobility for the badgemon's will be fixed to the user, and act as the user's level.
+    Both will have a pick from generic messages, and also specific messages per 'mon, each 'mon also has their own fatality messages, which are chosen on a winning hit against an opponent that's about to die.
+
+    There is a level/tier system in place which is met per donation incentives. Higher tiers should not be available unless the incentive has been met, but should have access to lower tiers.
+    <don't know if tier appearence will be chance based or not>
+
+    Characters with equal power statistics when using specials need to be randomly chosen from either.
+    When a special is used, if the versus statistic of the chosen special attack is the most powerful of the femmemon, it is instantly killed, otherwise it loses two hit points.
+    */
+
     $contents = file_get_contents("C:\\website\\zionfox\\hb\\mon.json");
     $mons = json_decode($contents, true);
     $contents = file_get_contents("C:\\website\\zionfox\\hb\\msgs.json");
     $messages = json_decode($contents, true);
     $contents = "";
 
-    //echo "Badgémon: </br>";
+    //echo "Badgï¿½mon: </br>";
     $rand = array_rand($mons["badgemon"]); //Badgemon doesn't need to be randomised.
     $badger = $mons["badgemon"][$rand];
     $rand = array_rand($mons["femmemon"]);

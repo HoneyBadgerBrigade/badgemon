@@ -1,29 +1,37 @@
 {
-    "generic": {
-        "statistics": [
-            "%bname% pulls up a sheet of peer reviewed statistics and reads some off to disprove %fname%."
-        ],
-        "humour": [
-            "Humourous messages go here"
-        ],
-        "logic": [
-            "%bname% uses logic.",
-            "%bname% other message"
-        ],
-        "agency": [
-            "Agency \"messages\" go here"
-        ],
-        "anecdote": [
-            "Anecdotal messages go here"
-        ],
-        "insult": [
-            "Insulting messages go here"
-        ],
-        "outrage": [
-            "Outrageous messages go here"
-        ],
-        "damsel": [
-            "Damsel messages go here"
-        ]
-    }
+    "knowledge": [
+        "%bname% \"Sentencing gap\"",
+        "%bname% \"Health Spending\"",
+        "%bname% uses Historical Facts."
+    ],
+    "humour": [
+        "Humourous messages go here"
+    ],
+    "logic": [
+        "%bname% uses logic.",
+        "%bname% other message"
+    ],
+    "agency": [
+        "%bname% RECORDS EVERYTHING.",
+        "%bname% uses Blackjack and Hookers."
+    ],
+    "anecdote": [
+        "%fname% recites Wikipedia entry.",
+        "%fname% consults Tumblr.",
+        "%fname% escapes to upside down land!",
+        "%fname% uses Historical Fudge."
+    ],
+    "insult": [
+        "%fname% uses Hysterical Fudge.",
+        "%fname% questions the integrity of your sex life."
+
+    ],
+    "outrage": [
+        "%fname% \"Wage gap!\"",
+        "%fname% files a DMCA!"
+    ],
+    "damsel": [
+        "%fname% \"RRAAAAAAAAPE!!!!!!\"",
+        "%fname% dindu nuffin!"
+    ]
 }
