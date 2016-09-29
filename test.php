@@ -15,6 +15,10 @@
 
     Characters with equal power statistics when using specials need to be randomly chosen from either.
     When a special is used, if the versus statistic of the chosen special attack is the most powerful of the femmemon, it is instantly killed, otherwise it loses two hit points.
+    
+    
+    !!!!!!!!!!!! QUESTION:
+    Could the chance of a special attack happen immediately as the battle starts?
     */
 
     $contents = file_get_contents("C:\\website\\zionfox\\hb\\mon.json");
@@ -29,57 +33,20 @@
     $rand = array_rand($mons["femmemon"]);
     $femme = $mons["femmemon"][$rand];
 
-    var_dump($badger);
+    /*var_dump($badger);
     echo "</br>";
-    var_dump($femme);
+    var_dump($femme);*/
 ?>
 
 <html>
     <head>
         <title>Testing JSON</title>
-        <style>
-            html, body {
-                font-family: arial, helvetica, sans-serif;
-                margin: 0px;
-                padding: 0px;
-            }
-            #box {
-                position: absolute;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 25px;
-                padding: 20px;
-                border: 4px solid #000000;
-                height: 200px;
-                width: 80%;
-            }
-            #buttons {
-                transition: 0.3s;
-            }
-            #buttons ul {
-                list-style: none;
-            }
-            #buttons ul li {
-                display: inline-block;
-                font-size: 2em;
-                padding: 8px;
-                margin: 10px 250px;
-                border: 4px solid #000000;
-                width: 200px;
-                text-align: center;
-                cursor: pointer;
-            }
-            #msgbox {
-                text-align: center;
-                font-size: 2em;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="gamestyles.css" />
         <script type="text/javascript">
             var badger = <?php echo json_encode($badger); ?>;
             var femme = <?php echo json_encode($femme); ?>;
+            
+            badger.hp = 3; femme.hp = 3;
 
             function sleep(time) {
                 return new Promise((resolve) => setTimeout(resolve, time));
@@ -96,11 +63,17 @@
             };
             xmlhttp.open("GET", "msgs.json", true);
             xmlhttp.send();
+            
+            function attack(stat) {
+                
+                
+                displayMessage(stat, type);
+            }
 
-            function displayMessage(stat) {
+            function displayMessage(stat, type) {
                 document.getElementById("buttons").style.opacity = "0";
-                var rand = Math.floor(Math.random() * messages["generic"][stat].length);
-                var message = messages["generic"][stat][rand];
+                var rand = Math.floor(Math.random() * messages[stat].length);
+                var message = messages[stat][rand];
 
                 message = message.replace("%bname%", badger["name"]);
                 message = message.replace("%fname%", femme["name"]);
@@ -134,10 +107,10 @@
             <div id="msgbox"></div>
             <div id="buttons">
                 <ul>
-                    <li onclick="displayMessage('statistics');">Statistical</li>
-                    <li onclick="displayMessage('humour');">Humourous</li>
-                    <li onclick="displayMessage('logic');">Logical</li>
-                    <li onclick="displayMessage('agency');">Agency</li>
+                    <li onclick="attack('knowledge');">Knowledge</li>
+                    <li onclick="attack('humour');">Humour</li>
+                    <li onclick="attack('logic');">Logic</li>
+                    <li onclick="attack('agency');">Agency</li>
                 </ul>
             </div>
         </div>
