@@ -2,7 +2,8 @@
     "badgemon": [
         {
             "name": "Honey Badger",
-            "bio": "blah blah blah blah",
+            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
+            "img": "i/b/honeybadger_card.jpg",
             "tier": 1,
             "special": 20,
             "stats": {
@@ -34,8 +35,43 @@
             }
         },
         {
+            "name": "TL;DR",
+            "bio": "Citation needed!",
+            "img": "i/b/tldr_card.jpg",
+            "tier": 2,
+            "special": 20,
+            "stats": {
+                "mobility": 7,
+                "knowledge": 7,
+                "humour": 7,
+                "logic": 10,
+                "agency": 8
+            },
+            "messages": {
+                "specific": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "special": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        },
+        {
             "name": "Karen",
-            "bio": "blah blah other badger",
+            "bio": "I got your sammich, bitch",
+            "img": "i/b/karen_card.jpg",
             "tier": 5,
             "special": 15,
             "stats": {
@@ -75,6 +111,7 @@
         {
             "name": "Big Red",
             "bio": "waah waah patriarchy",
+            "img": "i/f/bigred_card.png",
             "special": 2,
             "stats": {
                 "volume": 8,
@@ -108,6 +145,7 @@
         {
             "name": "Trigglypuff",
             "bio": "r'specht muh authoritah",
+            "img": "i/f/trigglypuff_card.png",
             "special": 2,
             "stats": {
                 "volume": 10,
