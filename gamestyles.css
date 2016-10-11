@@ -12,6 +12,8 @@ h1 {
 }
 
 #badgers {
+    width: 100%;
+    height: 100%;
     text-align: center;
 }
 
@@ -19,11 +21,13 @@ h1 {
     display: inline-block;
     margin: 10px;
     padding: 10px;
-    border: 2px solid #000000;
+    border: 4px solid #000000;
     border-radius: 8px;
     min-width: 276px;
     cursor: pointer;
     transition: 0.3s;
+    left: calc(50% - 276px);
+    bottom: calc(85% - 468px);
 }
 
 #badgers .box:hover { border-color: #FF0000; }
@@ -33,6 +37,25 @@ h1 {
 #badgers .box img { height: 256px; }
 #badgers .box ul { list-style: none; margin: 2px; columns: 2; padding-left: 4px; }
 #badgers .box p { margin: 5px 0px; max-width: 256px; min-height: 72px; max-height: 72px; }
+
+#badgers .selected {
+    position: absolute;
+    /*transition: 2s ease-out;*/
+    animation: badger-pos 2s ease-in-out forwards;
+}
+#badgers .selected img { transition: 1s; transform: rotateY(180deg); }
+#badgers .selected.hit { animation: badger-pos 2s ease-in-out forwards, hit 0.1s linear 3; }
+
+@keyframes badger-pos {
+    100% {
+        left: 10%;
+        bottom: 220px;
+    }
+}
+@keyframes hit {
+    100% { transform: translateX(10px); }
+    0% { transform: translateX(-10px); }
+}
 
 #box {
     display: none;
@@ -49,18 +72,22 @@ h1 {
     width: 80%;
     z-index: 1;
 }
+
 #buttons, #buttons li {
     transition: 0.3s;
 }
+
 #buttons ul {
     columns: 2;
     padding: 0px;
     margin: 0px;
     list-style: none;
 }
+
 #buttons li:nth-child(even) {
     margin-bottom: 0px;
 }
+
 #buttons ul li {
     font-size: 2em;
     padding: 8px 0px;
@@ -69,10 +96,17 @@ h1 {
     text-align: center;
     cursor: pointer;
 }
+
 #buttons ul li:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
+
 #msgbox {
     text-align: center;
     font-size: 2em;
+    position: absolute;
+    width: 100%;
+    margin-left: -20px;
+    padding: 20px;
+    z-index: -1;
 }

@@ -5,7 +5,7 @@
         "%bname% uses Historical Facts."
     ],
     "humour": [
-        "Humourous messages go here"
+        "Humourous messages that should very hopefully span two lines, maybe more, depends entirely on your screen resolution.<br/>I can also force it to two lines with &lt;br/&gt;."
     ],
     "logic": [
         "%bname% uses logic.",

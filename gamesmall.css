@@ -1,0 +1,3 @@
+#badgers .box { min-width: 207px; max-width: 207px; }
+#badgers .box img { width: 192px; }
+#badgers .box p, li { font-size: 0.75em };

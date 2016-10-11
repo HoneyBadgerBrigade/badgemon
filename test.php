@@ -20,12 +20,11 @@
     !!!!!!!!!!!! QUESTION:
     Could the chance of a special attack happen immediately as the battle starts?
     Should there be a character limit on biographies because of card size limitations?
+    If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and they happen by random chance?
     */
 
     $contents = file_get_contents("C:\\website\\zionfox\\hb\\mon.json");
     $mons = json_decode($contents, true);
-    /*$contents = file_get_contents("C:\\website\\zionfox\\hb\\msgs.json");
-    $messages = json_decode($contents, true);*/
     $contents = "";
 
     $rand = array_rand($mons["femmemon"]);
@@ -35,91 +34,27 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>Badgémon Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" href="i/favicon.png" />
         <link rel="stylesheet" type="text/css" href="gamestyles.css" />
+        <link rel="stylesheet" type="text/css" href="gamesmall.css" media="screen and (max-width: 1280px) and (max-height: 1080px)" />
         <script type="text/javascript">
             var badgemon = <?php echo json_encode($mons["badgemon"]); ?>;
             var femmemon = <?php echo json_encode($mons["femmemon"]); ?>;
-            var badger;
-            var femme;
-
-            function select(mon) {
-                document.getElementById("box").style.display = "block";
-                document.getElementById("badgers").style.display = "none";
-
-                badger = badgemon.find(x => x.name === mon);
-                femme = <?php echo json_encode($femme); ?>;
-
-                badger.hp = 3; femme.hp = 3;
-
-                var xmlhttp=new XMLHttpRequest();
-
-                xmlhttp.onreadystatechange = function()
-                {
-                    if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        var json = JSON.parse(this.responseText);
-                        window.messages = json;
-                    }
-                };
-                xmlhttp.open("GET", "msgs.json", true);
-                xmlhttp.send();
-            }
-
-            function attack(stat) {
-                var type = "";
-
-                displayMessage(stat, type);
-            }
-
-            function displayMessage(stat, type) {
-                var buttons = document.getElementById("buttons").style;
-                buttons.opacity = "0";
-                buttons.zIndex = -1;
-
-                var rand = Math.floor(Math.random() * messages[stat].length);
-                var message = messages[stat][rand];
-
-                message = message.replace("%bname%", badger["name"]);
-                message = message.replace("%fname%", femme["name"]);
-
-                sleep(300).then (() => {
-                    var i = 0;
-                    function loop() {
-                        setTimeout(function() {
-                            document.getElementById("msgbox").innerHTML = message.substring(0, i);
-                            i++;
-                            if(i <= message.length) {
-                                loop();
-                            }
-                            else {
-                                sleep(2500).then (() => {
-                                    document.getElementById("msgbox").innerHTML = "";
-                                    buttons.zIndex = 2;
-                                    buttons.opacity = "1";
-                                });
-                            }
-                        }, 10)
-                    }
-
-                    loop();
-                });
-            }
-
-            function sleep(time) {
-                return new Promise((resolve) => setTimeout(resolve, time));
-            }
         </script>
+        <script type="text/javascript" src="script.js"></script>
     </head>
 
     <body>
+        <h1 id="title">Choose your Badgémon!</h1>
         <?php
             asort($mons["badgemon"]);
-            echo "<div id='badgers'>" .
-                 "<h1>Choose your Badgémon!</h1>";
+            echo "<div id='badgers'>";
             foreach($mons["badgemon"] as $badger) {
                 //TODO: CHECK TIER SYSTEM
-                echo "<div class='box' onclick='select(\"" . $badger["name"] . "\");'>" .
+                echo "<div class='box' onclick='select(this, \"" . $badger["name"] . "\");'>" .
                      "<h2>" . $badger["name"] . "</h2>" .
                      "<img src='" . $badger["img"] . "' alt='" . $badger["name"] . "' />" .
                      "<p>" . $badger["bio"] . "</p>" .

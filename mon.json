@@ -35,6 +35,40 @@
             }
         },
         {
+            "name": "Alison Badger",
+            "bio": "something blah blah blah",
+            "img": "i/b/alison_card.png",
+            "tier": 2,
+            "special": 20,
+            "stats": {
+                "mobility": 7,
+                "knowledge": 7,
+                "humour": 7,
+                "logic": 10,
+                "agency": 8
+            },
+            "messages": {
+                "specific": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "special": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        },
+        {
             "name": "TL;DR",
             "bio": "Citation needed!",
             "img": "i/b/tldr_card.jpg",
