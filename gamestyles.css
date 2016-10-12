@@ -34,16 +34,15 @@ h1 {
 #badgers .box h2 { margin: 0px auto 8px auto; }
 #badgers .box h3 { font-weight: normal; margin: 0px; }
 #badgers .box p, h3, ul { text-align: left; }
-#badgers .box img { height: 256px; }
+#badgers .box img { height: 256px; transition: 1s; transform: rotateY(0deg); }
 #badgers .box ul { list-style: none; margin: 2px; columns: 2; padding-left: 4px; }
 #badgers .box p { margin: 5px 0px; max-width: 256px; min-height: 72px; max-height: 72px; }
 
 #badgers .selected {
     position: absolute;
-    /*transition: 2s ease-out;*/
-    animation: badger-pos 2s ease-in-out forwards;
+    animation: badger-pos 1.5s ease-in-out forwards;
 }
-#badgers .selected img { transition: 1s; transform: rotateY(180deg); }
+#badgers .selected img { transform: rotateY(180deg); }
 #badgers .selected.hit { animation: badger-pos 2s ease-in-out forwards, hit 0.1s linear 3; }
 
 @keyframes badger-pos {
@@ -53,8 +52,9 @@ h1 {
     }
 }
 @keyframes hit {
-    100% { transform: translateX(10px); }
-    0% { transform: translateX(-10px); }
+    100% { transform: translateX(0px); }
+    50% { transform: translateX(-10px); }
+    0% { transform: translateX(0px); }
 }
 
 #box {
@@ -104,7 +104,7 @@ h1 {
 #msgbox {
     text-align: center;
     font-size: 2em;
-    position: absolute;
+    display: none;
     width: 100%;
     margin-left: -20px;
     padding: 20px;

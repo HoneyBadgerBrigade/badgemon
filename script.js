@@ -1,6 +1,10 @@
 var badger;
 var femme;
 var selectedBadger;
+var s_hit = new Audio("hit.wav");
+var s_moans = ["moan.wav"];
+var s_vol = 0.5;
+
 
 function select(selected, mon) {
     document.getElementById("box").style.display = "block";
@@ -43,6 +47,11 @@ function attack(stat) {
 
 function hit(ent) {
     ent.classList.add("hit");
+    s_hit.volume = s_vol;
+    s_hit.play();
+    var s_moan = new Audio(s_moans[Math.floor(Math.random() * s_moans.length)]);
+    s_moan.volume = s_vol;
+    s_moan.play();
     sleep(500).then (() => {
         ent.classList.remove("hit");
     });
@@ -50,8 +59,10 @@ function hit(ent) {
 
 function displayMessage(stat, type) {
     var buttons = document.getElementById("buttons").style;
+    var msgbox = document.getElementById("msgbox");
     buttons.opacity = "0";
-    //buttons.display = "none";
+    buttons.display = "none";
+    msgbox.style.display = "block";
 
     var rand = Math.floor(Math.random() * messages[stat].length);
     var message = messages[stat][rand];
@@ -63,15 +74,16 @@ function displayMessage(stat, type) {
         var i = 0;
         function loop() {
             setTimeout(function() {
-                document.getElementById("msgbox").innerHTML = message.substring(0, i);
+                msgbox.innerHTML = message.substring(0, i);
                 i++;
                 if(i <= message.length) {
                     loop();
                 }
                 else {
                     sleep(2500).then (() => {
-                        document.getElementById("msgbox").innerHTML = "";
-                        //buttons.display = "block";
+                        msgbox.innerHTML = "";
+                        msgbox.style.display = "none";
+                        buttons.display = "block";
                         buttons.opacity = "1";
                     });
                 }
