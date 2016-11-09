@@ -16,19 +16,41 @@
     Characters with equal power statistics when using specials need to be randomly chosen from either.
     When a special is used, if the versus statistic of the chosen special attack is the most powerful of the femmemon, it is instantly killed, otherwise it loses two hit points.
 
+    //// Database Syntax
+    SELECT user.name Username, badgemon.name Badgemon, femmemon.name Femmemon FROM `battle`
+    INNER JOIN `badgemon` ON badgemon.id = battle.badgemon_id
+    INNER JOIN `femmemon` ON femmemon.id = battle.femmemon_id
+    INNER JOIN `user` ON user.token = battle.user_token
+    WHERE `won` = 1
+
 
     !!!!!!!!!!!! QUESTION:
-    Could the chance of a special attack happen immediately as the battle starts?
-    Should there be a character limit on biographies because of card size limitations?
-    If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and they happen by random chance?
+    Could the chance of a special attack happen immediately as the battle starts? ---- Last attack should get special attacks only.
+    Should there be a character limit on biographies because of card size limitations? ---- Yes: determine character limit.
+    If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and should they happen by random chance? ---- Use both custom and generic, and have preference over generic messages.
     */
+
+    $config = parse_ini_file("config.ini");
+
+    /*Database*/
+    $dbHost = $config["dbHost"];
+    $dbPort = $config["dbPort"];
+    $dbUser = $config["dbUser"];
+    $dbPass = $config["dbPass"];
+    $dbConn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbUser, $dbPort);
 
     $contents = file_get_contents("C:\\website\\zionfox\\hb\\mon.json");
     $mons = json_decode($contents, true);
     $contents = "";
 
-    $rand = array_rand($mons["femmemon"]);
-    $femme = $mons["femmemon"][$rand];
+    $uuid = strtolower(substr(com_create_guid(), 1, 36));
+    echo $uuid . "<br/>";
+
+    if(mysqli_connect_errno())
+        echo "Error connecting to MySQL Database: \"" . mysqli_connect_error() . "\"";
+    else {
+        /*Populate and utilise database here*/
+    }
 ?>
 
 <!DOCTYPE HTML>
