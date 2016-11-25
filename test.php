@@ -1,7 +1,7 @@
 <?php
     /*
     System: Stats are compared against each other, stats versus each other in the current format:
-    Statistics vs anecdote
+    Knowledge vs anecdote
     Humour vs insult
     Logic vs outrage
     Agency vs damsel
@@ -26,7 +26,7 @@
 
     !!!!!!!!!!!! QUESTION:
     Could the chance of a special attack happen immediately as the battle starts? ---- Last attack should get special attacks only.
-    Should there be a character limit on biographies because of card size limitations? ---- Yes: determine character limit.
+    Should there be a character limit on biographies because of card size limitations? ---- Yes: determine character limit. (128 char)
     If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and should they happen by random chance? ---- Use both custom and generic, and have preference over generic messages.
     */
 
@@ -72,14 +72,16 @@
     <body>
         <h1 id="title">Choose your Badgémon!</h1>
         <?php
+            //Generate and print badgémon
             asort($mons["badgemon"]);
             echo "<div id='badgers'>";
             foreach($mons["badgemon"] as $badger) {
                 //TODO: CHECK TIER SYSTEM
-                echo "<div class='box' onclick='select(this, \"" . $badger["name"] . "\");'>" .
+                echo "<div id='" . $badger["name"] . "' class='card' onclick='select(this, \"" . $badger["name"] . "\");'>" .
                      "<h2>" . $badger["name"] . "</h2>" .
-                     "<img src='" . $badger["img"] . "' alt='" . $badger["name"] . "' />" .
+                     "<img class='icon' src='" . $badger["img"] . "' alt='" . $badger["name"] . "' />" .
                      "<p>" . $badger["bio"] . "</p>" .
+                     "<div class='health'></div>" .
                      "<h3>Statistics</h3>" .
                      "<ul>";
                 foreach($badger["stats"] as $stat => $val) {
@@ -89,15 +91,35 @@
                 echo "</ul></div>";
             }
             echo "</div>";
+
+            //Generate but hide femmémon
+            asort($mons["femmemon"]);
+            echo "<div id='femmes'>";
+            foreach($mons["femmemon"] as $femme) {
+                //TODO: Check tier System
+                echo "<div id='" . $femme["name"] . "' class='card hidden'>" .
+                     "<h2>" . $femme["name"] . "</h2>" .
+                     "<img class='icon' src='" . $femme["img"] . "' alt='" . $femme["name"] . "' />" .
+                     "<p>" . $femme["bio"] . "</p>" .
+                     "<div class='health'></div>";/* .
+                     "<h3>Statistics</h3>" .
+                     "<ul>";
+                foreach($femme["stats"] as $stat => $val) {
+                    if($stat != "mobility" && $stat != "volume")
+                        echo "<li>" . ucfirst($stat) . ": " . $val . "</li>";
+                }
+                echo "</ul>*/echo "</div>";
+            }
+            echo "</div>";
         ?>
         <div id="box">
             <div id="msgbox"></div>
             <div id="buttons">
                 <ul>
-                    <li onclick="attack('knowledge');">Knowledge</li>
-                    <li onclick="attack('humour');">Humour</li>
-                    <li onclick="attack('logic');">Logic</li>
-                    <li onclick="attack('agency');">Agency</li>
+                    <li onclick="attackFemme(0);">Knowledge</li>
+                    <li onclick="attackFemme(1);">Humour</li>
+                    <li onclick="attackFemme(2);">Logic</li>
+                    <li onclick="attackFemme(3);">Agency</li>
                 </ul>
             </div>
         </div>
