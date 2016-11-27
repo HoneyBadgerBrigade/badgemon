@@ -7,6 +7,8 @@ var femmeAttacks = ["anecdote", "insult", "outrage", "damsel"];
 var s_hit = new Audio("hit.wav");
 var s_moans = ["moan.wav"];
 var s_vol = 0.5;
+var showButtons = true;
+var gameOver = false;
 
 function select(selected, mon) {
     document.getElementsByTagName("body")[0].style = "overflow-y: hidden";
@@ -53,20 +55,60 @@ function updateHP(ent, amount) {
         if(ent.children[i].className == "health") {
             ent.children[i].innerHTML = "";
             for(h = 0; h < amount; ++h) {
-                ent.children[i].appendChild(document.createElement("img")).setAttribute("src", "i/emblem-favorite.svg");
+                ent.children[i].appendChild(document.createElement("img")).setAttribute("src", "i/heart.svg");
             }
         }
     }
 }
 
+function attackBadger() {
+    var type = "";
+    var success = false;
+    playerLastAttack = false;
+    var selectedStat = 0;
+
+    for(i = 0; i < 4; ++i) {
+        if(femme.stats[femmeAttacks[i]] >= femme.stats[femmeAttacks[selectedStat]])
+            selectedStat = i;
+    }
+
+    if(badger.stats[badgerAttacks[selectedStat]] > femme.stats[femmeAttacks[selectedStat]]) {
+        hit(femmeCard);
+        updateHP(femmeCard, --femme.hp);
+    }
+    else if(badger.stats[badgerAttacks[selectedStat]] < femme.stats[femmeAttacks[selectedStat]]) {
+        hit(badgerCard);
+        updateHP(badgerCard, --badger.hp);
+        success = true;
+    }
+    //else //Draw/parry
+
+    displayMessage(femmeAttacks[selectedStat], type, success);
+}
+
 function attackFemme(stat) {
     var type = "";
     var success = false;
-    if(badger.stats[badgerAttacks[stat]] > femme.stats[femmeAttacks[stat]]) { hit(femmeCard); success = true; updateHP(femmeCard, --femme.hp); }
-    else if(badger.stats[badgerAttacks[stat]] < femme.stats[femmeAttacks[stat]]) { hit(badgerCard); updateHP(badgerCard, --badger.hp); }
+    playerLastAttack = true;
+
+    if(badger.stats[badgerAttacks[stat]] > femme.stats[femmeAttacks[stat]]) {
+        hit(femmeCard);
+        updateHP(femmeCard, --femme.hp);
+        success = true;
+    }
+    else if(badger.stats[badgerAttacks[stat]] < femme.stats[femmeAttacks[stat]]) {
+        hit(badgerCard);
+        updateHP(badgerCard, --badger.hp);
+    }
     //else //Draw/parry
 
-    displayMessage(stat, type, success);
+    displayMessage(badgerAttacks[stat], type, success);
+}
+
+function battleOver(win) {
+    showButtons = false;
+    gameOver = true;
+    displayMessage("", "win", win);
 }
 
 function hit(ent) {
@@ -85,37 +127,53 @@ function displayMessage(stat, type, success) {
     var buttons = document.getElementById("buttons").style;
     var msgbox = document.getElementById("msgbox");
     buttons.opacity = "0";
-    buttons.display = "none";
-    msgbox.style.display = "block";
+    sleep(200).then(() => {
+        buttons.display = "none";
+        msgbox.style.display = "block";
+    });
 
-    var rand = Math.floor(Math.random() * messages[badgerAttacks[stat]].length);
-    var message = messages[badgerAttacks[stat]][rand];
+    if(type == "win") {
+        message = "";
+        if(success) message += badger.win_message + "<br/><br/>" + femme.lose_message;
+        else message += femme.win_message + "<br/><br/>" + badger.lose_message;
+        //after some time, or present an X, return user to sims page.
+    }
+    else {
+        var rand = Math.floor(Math.random() * messages[stat].length);
+        var message = messages[stat][rand];
+        if(!success) message += "<br/>It wasn't very effective...";
+    }
 
     message = message.replace("%bname%", badger["name"]);
     message = message.replace("%fname%", femme["name"]);
 
-    if(!success) message += "<br/>It wasn't very effective...";
-
-    sleep(300).then (() => {
+    sleep(300).then(() => {
         var i = 0;
         function loop() {
-            setTimeout(function() {
+            sleep(10).then(() => {
                 msgbox.innerHTML = message.substring(0, i);
                 i++;
                 if(i <= message.length) {
                     loop();
                 }
                 else {
-                    sleep(2500).then (() => {
-                        msgbox.innerHTML = "";
-                        msgbox.style.display = "none";
-                        buttons.display = "block";
-                        buttons.opacity = "1";
+                    sleep(2500).then(() => {
+                        if(showButtons) {
+                            msgbox.innerHTML = "";
+                            msgbox.style.display = "none";
+                            buttons.display = "block";
+                            buttons.opacity = "1";
+                        }
+
+                        if(femme.hp <= 0 && !gameOver) battleOver(true);
+                        else if(badger.hp <= 0 && !gameOver) battleOver(false);
+                        else {
+                            if(playerLastAttack && !gameOver) { attackBadger(); }
+                        }
                     });
                 }
-            }, 10)
+            });
         }
-
         loop();
     });
 }

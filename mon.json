@@ -1,6 +1,114 @@
 {
     "badgemon": [
         {
+            "name": "Harambe",
+            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
+            "img": "i/b/harambe_card.png",
+            "tier": 1,
+            "special": 20,
+            "stats": {
+                "mobility": 7,
+                "knowledge": 7,
+                "humour": 7,
+                "logic": 10,
+                "agency": 8
+            },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
+            "messages": {
+                "specific": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "special": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        },
+        {
+            "name": "Badger Chan",
+            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
+            "img": "i/b/badgerchan_card.png",
+            "tier": 1,
+            "special": 20,
+            "stats": {
+                "mobility": 7,
+                "knowledge": 7,
+                "humour": 7,
+                "logic": 10,
+                "agency": 8
+            },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
+            "messages": {
+                "specific": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "special": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        },
+        {
+            "name": "Badgerkun",
+            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
+            "img": "i/b/badgerkun_card.png",
+            "tier": 1,
+            "special": 20,
+            "stats": {
+                "mobility": 7,
+                "knowledge": 7,
+                "humour": 7,
+                "logic": 10,
+                "agency": 8
+            },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
+            "messages": {
+                "specific": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "special": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                },
+                "fatalities": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                }
+            }
+        },
+        {
             "name": "Honey Badger",
             "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
             "img": "i/b/honeybadger_card.jpg",
@@ -13,6 +121,8 @@
                 "logic": 10,
                 "agency": 8
             },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
             "messages": {
                 "specific": {
                     "knowledge": [],
@@ -47,6 +157,8 @@
                 "logic": 10,
                 "agency": 8
             },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
             "messages": {
                 "specific": {
                     "knowledge": [],
@@ -81,6 +193,8 @@
                 "logic": 10,
                 "agency": 8
             },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
             "messages": {
                 "specific": {
                     "knowledge": [],
@@ -115,6 +229,8 @@
                 "logic": 8,
                 "agency": 7
             },
+            "win_message": "%bname% wins!",
+            "lose_message": "Better luck next time, %bname%",
             "messages": {
                 "specific": {
                     "knowledge": [
@@ -143,6 +259,114 @@
     ],
     "femmemon": [
         {
+            "name": "DF (Please give me some proper names...)",
+            "bio": "waah waah patriarchy",
+            "img": "i/f/DF.png",
+            "special": 2,
+            "stats": {
+                "volume": 8,
+                "mobility": 2,
+                "anecdote": 10,
+                "insult": 8,
+                "outrage": 7,
+                "damsel": 7
+            },
+            "win_message": "%fname% wins, and brags about it on Twitter!",
+            "lose_message": "%fname% is über triggered and flails away!",
+            "messages": {
+                "specific": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "special": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "fatalities": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                }
+            }
+        },
+        {
+            "name": "Steve Shires",
+            "bio": "Block <b><span style='font-size: 1.5em;'>ALL</span></b> the things!",
+            "img": "i/f/steveshires_card.png",
+            "special": 2,
+            "stats": {
+                "volume": 8,
+                "mobility": 2,
+                "anecdote": 10,
+                "insult": 8,
+                "outrage": 7,
+                "damsel": 7
+            },
+            "win_message": "%fname% wins, and brags about it on Twitter!",
+            "lose_message": "%fname% is über triggered and flails away!",
+            "messages": {
+                "specific": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "special": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "fatalities": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                }
+            }
+        },
+        {
+            "name": "Brianna Wu",
+            "bio": "waah waah patriarchy",
+            "img": "i/f/briannawu_card.png",
+            "special": 2,
+            "stats": {
+                "volume": 8,
+                "mobility": 2,
+                "anecdote": 10,
+                "insult": 8,
+                "outrage": 7,
+                "damsel": 7
+            },
+            "win_message": "%fname% wins, and brags about it on Twitter!",
+            "lose_message": "%fname% is über triggered and flails away!",
+            "messages": {
+                "specific": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "special": {
+                    "anecdote": [],
+                    "insult": [],
+                    "outrage": [],
+                    "damsel": []
+                },
+                "fatalities": {
+                    "knowledge": [],
+                    "humour": [],
+                    "logic": [],
+                    "agency": []
+                }
+            }
+        },
+        {
             "name": "Big Red",
             "bio": "waah waah patriarchy",
             "img": "i/f/bigred_card.png",
@@ -155,6 +379,8 @@
                 "outrage": 7,
                 "damsel": 7
             },
+            "win_message": "%fname% wins, and brags about it on Twitter!",
+            "lose_message": "%fname% is über triggered and flails away!",
             "messages": {
                 "specific": {
                     "anecdote": [],
@@ -189,6 +415,8 @@
                 "outrage": 4,
                 "damsel": 6
             },
+            "win_message": "%fname% wins, and brags about it on Twitter!",
+            "lose_message": "%fname% is über triggered and flails away!",
             "messages": {
                 "specific": {
                     "anecdote": [],
