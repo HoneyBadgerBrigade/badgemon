@@ -2,20 +2,20 @@
     "badgemon": [
         {
             "name": "Harambe",
-            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
+            "bio": "Lorem ipsum dolor sit amet.",
             "img": "i/b/harambe_card.png",
             "tier": 1,
             "special": 20,
+            "initiative": 1,
             "stats": {
-                "mobility": 7,
                 "knowledge": 7,
                 "humour": 7,
                 "logic": 10,
                 "agency": 8
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins! But still gets shot. :(",
+                "lose": "%bname% is shot by %fname%. Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [],
                     "humour": [],
@@ -23,35 +23,29 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         },
         {
             "name": "Badger Chan",
-            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore et dolore magna aliqua.",
+            "bio": "Lorem ipsum dolor sit amet. Consecetur adipiscing elit, sed do eisumod tempor incididunt ut labore",
             "img": "i/b/badgerchan_card.png",
             "tier": 1,
             "special": 20,
+            "initiative": 2,
             "stats": {
-                "mobility": 7,
                 "knowledge": 7,
                 "humour": 7,
                 "logic": 10,
                 "agency": 8
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins!",
+                "lose": "Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [],
                     "humour": [],
@@ -59,16 +53,10 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         },
@@ -78,16 +66,16 @@
             "img": "i/b/badgerkun_card.png",
             "tier": 1,
             "special": 20,
+            "initiative": 2,
             "stats": {
-                "mobility": 7,
                 "knowledge": 7,
                 "humour": 7,
                 "logic": 10,
                 "agency": 8
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins!",
+                "lose": "Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [],
                     "humour": [],
@@ -95,16 +83,10 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         },
@@ -114,16 +96,16 @@
             "img": "i/b/honeybadger_card.jpg",
             "tier": 1,
             "special": 20,
+            "initiative": 1,
             "stats": {
-                "mobility": 7,
                 "knowledge": 7,
                 "humour": 7,
                 "logic": 10,
                 "agency": 8
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins!",
+                "lose": "Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [],
                     "humour": [],
@@ -131,16 +113,10 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         },
@@ -150,16 +126,16 @@
             "img": "i/b/alison_card.png",
             "tier": 2,
             "special": 20,
+            "initiative": 3,
             "stats": {
-                "mobility": 7,
                 "knowledge": 7,
                 "humour": 7,
                 "logic": 10,
                 "agency": 8
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins!",
+                "lose": "Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [],
                     "humour": [],
@@ -167,16 +143,10 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         },
@@ -186,16 +156,16 @@
             "img": "i/b/tldr_card.jpg",
             "tier": 2,
             "special": 20,
+            "initiative": 5,
             "stats": {
-                "mobility": 7,
                 "knowledge": 7,
                 "humour": 7,
                 "logic": 10,
                 "agency": 8
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins!",
+                "lose": "Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [],
                     "humour": [],
@@ -203,16 +173,10 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         },
@@ -222,16 +186,16 @@
             "img": "i/b/karen_card.jpg",
             "tier": 5,
             "special": 15,
+            "initiative": 8,
             "stats": {
-                "mobility": 8,
                 "knowledge": 6,
                 "humour": 4,
                 "logic": 8,
                 "agency": 7
             },
-            "win_message": "%bname% wins!",
-            "lose_message": "Better luck next time, %bname%",
             "messages": {
+                "win": "%bname% wins!",
+                "lose": "Better luck next time, %bname%",
                 "specific": {
                     "knowledge": [
                         "%bname% uses train; %fname% dissolves into a pile of radishes."
@@ -241,39 +205,31 @@
                     "agency": []
                 },
                 "special": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
-                },
-                "fatalities": {
-                    "anecdote": [],
-                    "insult": [
-                        "%bname% remove %fname%'s spine! FATALITY!"
-                    ],
-                    "outrage": [],
-                    "damsel": []
+                    "knowledge": ["knowledge special", "knowledge special 2"],
+                    "humour": ["humour special", "humour special 2"],
+                    "logic": ["logic special", "logic special 2"],
+                    "agency": ["agency special", "agency special 2"]
                 }
             }
         }
     ],
     "femmemon": [
         {
-            "name": "DF (Please give me some proper names...)",
+            "name": "DF",
             "bio": "waah waah patriarchy",
             "img": "i/f/DF.png",
+            "tier": 8,
             "special": 2,
+            "initiative": 4,
             "stats": {
-                "volume": 8,
-                "mobility": 2,
                 "anecdote": 10,
                 "insult": 8,
                 "outrage": 7,
                 "damsel": 7
-            },
-            "win_message": "%fname% wins, and brags about it on Twitter!",
-            "lose_message": "%fname% is über triggered and flails away!",
+            },            
             "messages": {
+                "win": "%fname% wins, and brags about it on Twitter!",
+                "lose": "%fname% is über triggered and flails away!",
                 "specific": {
                     "anecdote": [],
                     "insult": [],
@@ -281,16 +237,10 @@
                     "damsel": []
                 },
                 "special": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
-                },
-                "fatalities": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
+                    "anecdote": ["anecdote special", "anecdote special 2"],
+                    "insult": ["insult special", "insult special 2"],
+                    "outrage": ["outrage special", "outrage special 2"],
+                    "damsel": ["damsel special", "damsel special 2"]
                 }
             }
         },
@@ -298,18 +248,18 @@
             "name": "Steve Shires",
             "bio": "Block <b><span style='font-size: 1.5em;'>ALL</span></b> the things!",
             "img": "i/f/steveshires_card.png",
+            "tier": 1,
             "special": 2,
+            "initiative": 6,
             "stats": {
-                "volume": 8,
-                "mobility": 2,
                 "anecdote": 10,
                 "insult": 8,
                 "outrage": 7,
                 "damsel": 7
             },
-            "win_message": "%fname% wins, and brags about it on Twitter!",
-            "lose_message": "%fname% is über triggered and flails away!",
             "messages": {
+                "win": "%fname% wins, and brags about it on Twitter!",
+                "lose": "%fname% is über triggered and blocks you!",
                 "specific": {
                     "anecdote": [],
                     "insult": [],
@@ -317,16 +267,10 @@
                     "damsel": []
                 },
                 "special": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
-                },
-                "fatalities": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
+                    "anecdote": ["anecdote special", "anecdote special 2"],
+                    "insult": ["insult special", "insult special 2"],
+                    "outrage": ["outrage special", "outrage special 2"],
+                    "damsel": ["damsel special", "damsel special 2"]
                 }
             }
         },
@@ -334,18 +278,18 @@
             "name": "Brianna Wu",
             "bio": "waah waah patriarchy",
             "img": "i/f/briannawu_card.png",
+            "tier": 1,
             "special": 2,
+            "initiative": 7,
             "stats": {
-                "volume": 8,
-                "mobility": 2,
                 "anecdote": 10,
                 "insult": 8,
                 "outrage": 7,
                 "damsel": 7
             },
-            "win_message": "%fname% wins, and brags about it on Twitter!",
-            "lose_message": "%fname% is über triggered and flails away!",
             "messages": {
+                "win": "%fname% wins, and brags about it on Twitter!",
+                "lose": "%fname% is über triggered and tiki's away!",
                 "specific": {
                     "anecdote": [],
                     "insult": [],
@@ -353,16 +297,10 @@
                     "damsel": []
                 },
                 "special": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
-                },
-                "fatalities": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
+                    "anecdote": ["anecdote special", "anecdote special 2"],
+                    "insult": ["insult special", "insult special 2"],
+                    "outrage": ["outrage special", "outrage special 2"],
+                    "damsel": ["damsel special", "damsel special 2"]
                 }
             }
         },
@@ -370,18 +308,18 @@
             "name": "Big Red",
             "bio": "waah waah patriarchy",
             "img": "i/f/bigred_card.png",
+            "tier": 2,
             "special": 2,
+            "initiative": 3,
             "stats": {
-                "volume": 8,
-                "mobility": 2,
                 "anecdote": 10,
                 "insult": 8,
                 "outrage": 7,
                 "damsel": 7
             },
-            "win_message": "%fname% wins, and brags about it on Twitter!",
-            "lose_message": "%fname% is über triggered and flails away!",
             "messages": {
+                "win": "%fname% wins, and applies more lipstick!",
+                "lose": "%fname% is über triggered and flails away!",
                 "specific": {
                     "anecdote": [],
                     "insult": [],
@@ -389,16 +327,10 @@
                     "damsel": []
                 },
                 "special": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
-                },
-                "fatalities": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
+                    "anecdote": ["anecdote special", "anecdote special 2"],
+                    "insult": ["insult special", "insult special 2"],
+                    "outrage": ["outrage special", "outrage special 2"],
+                    "damsel": ["damsel special", "damsel special 2"]
                 }
             }
         },
@@ -406,18 +338,18 @@
             "name": "Trigglypuff",
             "bio": "r'specht muh authoritah",
             "img": "i/f/trigglypuff_card.png",
+            "tier": 1,
             "special": 2,
+            "initiative": 1,
             "stats": {
-                "volume": 10,
-                "mobility": 1,
                 "anecdote": 8,
                 "insult": 7,
                 "outrage": 4,
                 "damsel": 6
             },
-            "win_message": "%fname% wins, and brags about it on Twitter!",
-            "lose_message": "%fname% is über triggered and flails away!",
             "messages": {
+                "win": "%fname% wins, and brags about it on Twitter!",
+                "lose": "%fname% is über triggered and SCREAMS LOUDLY into the distance!",
                 "specific": {
                     "anecdote": [],
                     "insult": [],
@@ -425,16 +357,10 @@
                     "damsel": []
                 },
                 "special": {
-                    "anecdote": [],
-                    "insult": [],
-                    "outrage": [],
-                    "damsel": []
-                },
-                "fatalities": {
-                    "knowledge": [],
-                    "humour": [],
-                    "logic": [],
-                    "agency": []
+                    "anecdote": ["anecdote special", "anecdote special 2"],
+                    "insult": ["insult special", "insult special 2"],
+                    "outrage": ["outrage special", "outrage special 2"],
+                    "damsel": ["damsel special", "damsel special 2"]
                 }
             }
         }

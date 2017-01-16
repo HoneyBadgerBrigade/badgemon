@@ -18,6 +18,7 @@ h1 {
     height: calc(100% - 332px);
     overflow-y: auto;
     text-align: center;
+    vertical-align: top;
 }
 #badgers { box-shadow: inset 0px 0px 10px #3A3A3A; }
 
@@ -30,11 +31,18 @@ h1 {
     background-color: #E3E3E3;
     min-width: 276px;
     max-width: 276px;
+    /*min-height: 458px;*/
+    max-height: 458px;
     cursor: pointer;
     transition: 0.3s;
     left: calc(50% - 276px);
+    background-size: cover;
+    background-position: center center;
     /*bottom: calc(85% - 468px);*/
 }
+
+#badgers .card { background-image: url("i/c/badgercard.jpg"); }
+#femmes .card { background-image: url("i/c/femmecard.jpg"); }
 
 #badgers .card:hover, #femmes .card:hover { border-color: #FF0000; }
 #badgers .card h2, #femmes .card h2 { margin: 0px auto 8px auto; }
@@ -42,7 +50,7 @@ h1 {
 #badgers .card p, h3, ul, #femmes .card p, h3, ul { text-align: left; }
 #badgers .card img.icon, #femmes .card img.icon { height: 256px; transition: 1s; transform: rotateY(0deg); }
 #badgers .card ul, #femmes .card ul { list-style: none; margin: 2px; columns: 2; padding-left: 4px; }
-#badgers .card p, #femmes .card p { margin: 5px 0px; max-width: 256px; min-height: 72px; max-height: 72px; }
+#badgers .card p, #femmes .card p { margin: 5px 10px; max-width: 256px; min-height: 72px; max-height: 72px; }
 
 #badgers .selected {
     position: absolute;
@@ -142,6 +150,7 @@ h1 {
 
 .health {
     padding: 4px;
+    height: 3em;
     text-align: center;
 }
 .health img {

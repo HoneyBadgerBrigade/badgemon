@@ -25,9 +25,18 @@
 
 
     !!!!!!!!!!!! QUESTION:
-    Could the chance of a special attack happen immediately as the battle starts? ---- Last attack should get special attacks only.
+    Could the chance of a special attack happen immediately as the battle starts? ---- at 1hp, both should get special attacks.
     Should there be a character limit on biographies because of card size limitations? ---- Yes: determine character limit. (128 char)
     If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and should they happen by random chance? ---- Use both custom and generic, and have preference over generic messages.
+
+    ////////////
+    For 4th Jan:
+    mobility == initiative
+    special only happens when attacker is on 1 life = 100 - (initiative * 5)
+    femmemon stat bonus: femme loses and stat increases by 1.
+
+    Finalise battle system, and ensure it works to standard.
+    Finalise messaging system, and work out what needs to be said and when.
     */
 
     $config = parse_ini_file("config.ini");
@@ -44,7 +53,7 @@
     $contents = "";
 
     $uuid = strtolower(substr(com_create_guid(), 1, 36));
-    echo $uuid . "<br/>";
+    //echo $uuid . "<br/>";
 
     if(mysqli_connect_errno())
         echo "Error connecting to MySQL Database: \"" . mysqli_connect_error() . "\"";
@@ -80,15 +89,15 @@
                 echo "<div id='" . $badger["name"] . "' class='card' onclick='select(this, \"" . $badger["name"] . "\");'>" .
                      "<h2>" . $badger["name"] . "</h2>" .
                      "<img class='icon' src='" . $badger["img"] . "' alt='" . $badger["name"] . "' />" .
-                     "<p>" . $badger["bio"] . "</p>" .
-                     "<div class='health'></div>" .
+                     "<p>ini". $badger["initiative"] . "<br/>" . $badger["bio"] . "</p>" .
+                     "<div class='health'></div>";/* .
                      "<h3>Statistics</h3>" .
                      "<ul>";
                 foreach($badger["stats"] as $stat => $val) {
                     if($stat != "mobility")
                         echo "<li>" . ucfirst($stat) . ": " . $val . "</li>";
                 }
-                echo "</ul></div>";
+                echo "</ul>*/echo "</div>";
             }
             echo "</div>";
 
@@ -100,7 +109,7 @@
                 echo "<div id='" . $femme["name"] . "' class='card hidden'>" .
                      "<h2>" . $femme["name"] . "</h2>" .
                      "<img class='icon' src='" . $femme["img"] . "' alt='" . $femme["name"] . "' />" .
-                     "<p>" . $femme["bio"] . "</p>" .
+                     "<p>ini". $femme["initiative"] . "<br/>" . $femme["bio"] . "</p>" .
                      "<div class='health'></div>";/* .
                      "<h3>Statistics</h3>" .
                      "<ul>";
