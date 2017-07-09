@@ -25,18 +25,16 @@
 
 
     !!!!!!!!!!!! QUESTION:
-    Could the chance of a special attack happen immediately as the battle starts? ---- at 1hp, both should get special attacks.
-    Should there be a character limit on biographies because of card size limitations? ---- Yes: determine character limit. (128 char)
-    If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and should they happen by random chance? ---- Use both custom and generic, and have preference over generic messages.
+    Could the chance of a special attack happen immediately as the battle starts? ---- A: at 1hp, both should get special attacks.
+    Should there be a character limit on biographies because of card size limitations? ----A: Yes: determine character limit. (128 char)
+    If a 'mon has custom messages, should they be used in place of generic messages, or in addition to and should they happen by random chance? ---- A: Use both custom and generic, and have preference over generic messages.
 
     ////////////
-    For 4th Jan:
-    mobility == initiative
-    special only happens when attacker is on 1 life = 100 - (initiative * 5)
-    femmemon stat bonus: femme loses and stat increases by 1.
-
-    Finalise battle system, and ensure it works to standard.
-    Finalise messaging system, and work out what needs to be said and when.
+    For 5th Feb
+    Implement countering. Allow counter attacks on femmemon attacks.
+    Low init cards get higher chance of counter.
+    Feedback for special attacks, Dispay icons on empty hearts based on sequence of attacks used. This will happen for three attacks that you take damage to. After all icons appear, calculate your special, and use it if available.
+    System for fleeing the battle.
     */
 
     $config = parse_ini_file("config.ini");
@@ -48,7 +46,7 @@
     $dbPass = $config["dbPass"];
     $dbConn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbUser, $dbPort);
 
-    $contents = file_get_contents("C:\\website\\zionfox\\hb\\mon.json");
+    $contents = file_get_contents("mon.json");
     $mons = json_decode($contents, true);
     $contents = "";
 
@@ -60,6 +58,8 @@
     else {
         /*Populate and utilise database here*/
     }
+
+    $femme = $mons["femmemon"][rand(0, count($mons["femmemon"]) - 1)];
 ?>
 
 <!DOCTYPE HTML>
@@ -73,13 +73,25 @@
         <link rel="stylesheet" type="text/css" href="gamesmall.css" media="screen and (max-width: 1280px) and (max-height: 1080px)" />
         <script type="text/javascript">
             var badgemon = <?php echo json_encode($mons["badgemon"]); ?>;
-            var femmemon = <?php echo json_encode($mons["femmemon"]); ?>;
+            var femmemon = <?php echo json_encode($femme); ?>;
         </script>
         <script type="text/javascript" src="script.js"></script>
     </head>
 
     <body>
-        <h1 id="title">Choose your Badgémon!</h1>
+        <h1 id="title"><?php echo "A wild <span style='color: #FF1D8E;'>" . $femme["name"] . "</span> has appeared!<br/>"; ?>Choose your Badgémon!</h1>
+        <div id="counter" class="hide">
+            <div id="options">
+                <div id="message"></div>
+                <ul>
+                    <li onclick="counter(0);">Knowledge</li>
+                    <li onclick="counter(1);">Humour</li>
+                    <li onclick="counter(2);">Logic</li>
+                    <li onclick="counter(3);">Agency</li>
+                    <li onclick="counter(-1);">Flee</li>
+                </ul>
+            </div>
+        </div>
         <?php
             //Generate and print badgémon
             asort($mons["badgemon"]);
@@ -89,7 +101,7 @@
                 echo "<div id='" . $badger["name"] . "' class='card' onclick='select(this, \"" . $badger["name"] . "\");'>" .
                      "<h2>" . $badger["name"] . "</h2>" .
                      "<img class='icon' src='" . $badger["img"] . "' alt='" . $badger["name"] . "' />" .
-                     "<p>ini". $badger["initiative"] . "<br/>" . $badger["bio"] . "</p>" .
+                     "<p>" . $badger["bio"] . "</p>" .
                      "<div class='health'></div>";/* .
                      "<h3>Statistics</h3>" .
                      "<ul>";
@@ -102,14 +114,14 @@
             echo "</div>";
 
             //Generate but hide femmémon
-            asort($mons["femmemon"]);
+            //asort($mons["femmemon"]);
             echo "<div id='femmes'>";
-            foreach($mons["femmemon"] as $femme) {
+            //foreach($mons["femmemon"] as $femme) {
                 //TODO: Check tier System
                 echo "<div id='" . $femme["name"] . "' class='card hidden'>" .
                      "<h2>" . $femme["name"] . "</h2>" .
                      "<img class='icon' src='" . $femme["img"] . "' alt='" . $femme["name"] . "' />" .
-                     "<p>ini". $femme["initiative"] . "<br/>" . $femme["bio"] . "</p>" .
+                     "<p>" . $femme["bio"] . "</p>" .
                      "<div class='health'></div>";/* .
                      "<h3>Statistics</h3>" .
                      "<ul>";
@@ -118,10 +130,11 @@
                         echo "<li>" . ucfirst($stat) . ": " . $val . "</li>";
                 }
                 echo "</ul>*/echo "</div>";
-            }
+            //}
             echo "</div>";
         ?>
         <div id="box">
+        <div id="flee" onclick="flee();">Flee</div>
             <div id="msgbox"></div>
             <div id="buttons">
                 <ul>

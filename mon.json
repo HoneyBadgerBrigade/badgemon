@@ -7,6 +7,7 @@
             "tier": 1,
             "special": 20,
             "initiative": 1,
+            "specialSequence": [0, 2, 0],
             "stats": {
                 "knowledge": 7,
                 "humour": 7,
@@ -37,6 +38,7 @@
             "tier": 1,
             "special": 20,
             "initiative": 2,
+            "specialSequence": [0, 2, 2],
             "stats": {
                 "knowledge": 7,
                 "humour": 7,
@@ -67,6 +69,7 @@
             "tier": 1,
             "special": 20,
             "initiative": 2,
+            "specialSequence": [0, 1, 0],
             "stats": {
                 "knowledge": 7,
                 "humour": 7,
@@ -97,6 +100,7 @@
             "tier": 1,
             "special": 20,
             "initiative": 1,
+            "specialSequence": [2, 0, 0],
             "stats": {
                 "knowledge": 7,
                 "humour": 7,
@@ -127,6 +131,7 @@
             "tier": 2,
             "special": 20,
             "initiative": 3,
+            "specialSequence": [1, 0, 1],
             "stats": {
                 "knowledge": 7,
                 "humour": 7,
@@ -157,6 +162,7 @@
             "tier": 2,
             "special": 20,
             "initiative": 5,
+            "specialSequence": [3, 1, 1],
             "stats": {
                 "knowledge": 7,
                 "humour": 7,
@@ -187,6 +193,7 @@
             "tier": 5,
             "special": 15,
             "initiative": 8,
+            "specialSequence": [1, 2, 2],
             "stats": {
                 "knowledge": 6,
                 "humour": 4,
@@ -245,7 +252,7 @@
             }
         },
         {
-            "name": "Steve Shires",
+            "name": "Steve Chives",
             "bio": "Block <b><span style='font-size: 1.5em;'>ALL</span></b> the things!",
             "img": "i/f/steveshires_card.png",
             "tier": 1,

@@ -5,8 +5,11 @@ var femmeCard;
 var badgerAttacks = ["knowledge", "humour", "logic", "agency"];
 var femmeAttacks = ["anecdote", "insult", "outrage", "damsel"];
 var s_hit = new Audio("hit.wav");
+var bgm = new Audio("mus_battle1.wav");
+bgm.loop = true;
+bgm.volume = 0.25;
 //var s_moans = ["moan.wav"];
-var s_vol = 0.5;
+var s_vol = 0.25;
 var showButtons = true;
 var gameOver = false;
 
@@ -24,7 +27,7 @@ function select(selected, mon) {
     }
 
     badger = badgemon.find(x => x.name === mon);
-    femme = femmemon[Math.floor(Math.random() * femmemon.length)];
+    femme = femmemon;
     femmeCard = document.getElementById(femme.name);
     femmeCard.classList.remove("hidden");
     femmeCard.classList.add("selected");
@@ -34,6 +37,7 @@ function select(selected, mon) {
     updateHP(femmeCard, femme.hp);
 
     document.getElementById("title").innerHTML = badger.name + " vs. " + femme.name;
+    bgm.play();
 
     var xmlhttp=new XMLHttpRequest();
 
@@ -71,7 +75,13 @@ function updateHP(ent, amount) {
     }
 }
 
-//called by femmemon when they attack badgemons
+//called whenever a femmémon attacks before it makes a hit. It'll return whether the counter succeeds or not.
+function counter() {
+
+    return false;
+}
+
+//called by femmémon when they attack badgemons
 function attackBadger() {
     var type = "";
     var success = false;
@@ -96,7 +106,7 @@ function attackBadger() {
 
     if(badger.stats[badgerAttacks[selectedStat]] > femme.stats[femmeAttacks[selectedStat]]) {
         hit(femmeCard);
-        updateHP(femmeCard, --femme.hp);
+        //updateHP(femmeCard, --femme.hp);
         femme.stats[femmeAttacks[selectedStat]]++;
         def = true;
     }
@@ -138,7 +148,7 @@ function attackFemme(stat) {
     }
     else if(badger.stats[badgerAttacks[stat]] < femme.stats[femmeAttacks[stat]]) {
         hit(badgerCard);
-        updateHP(badgerCard, --badger.hp);
+        //updateHP(badgerCard, --badger.hp);
     }
     else {
         type = "parry";
