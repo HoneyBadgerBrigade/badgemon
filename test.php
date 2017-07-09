@@ -44,7 +44,7 @@
     $dbPort = $config["dbPort"];
     $dbUser = $config["dbUser"];
     $dbPass = $config["dbPass"];
-    $dbConn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbUser, $dbPort);
+    //$dbConn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbUser, $dbPort); TEMPORARY UNTIL DB REQ DETERMINED
 
     $contents = file_get_contents("mon.json");
     $mons = json_decode($contents, true);
