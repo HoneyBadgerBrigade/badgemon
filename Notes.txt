@@ -1,0 +1,53 @@
+Task List
+
+	7/17/17: Counter-Attack Framework setup
+
+Basic Information
+
+	Stats
+
+		 BadgeMon	  FemMon
+			
+		Knowledge <-> Anecdote
+		    Humor <-> Insult
+		   Agency <-> Damsel(appeal to media)
+		    Logic <-> Outrage 
+		
+		
+		Volume- Multiplier(Not implemented)
+		Mobility- Initiative
+	
+Stuff TODO
+
+	Specific attack sequences, that happen to fail, would give a speical attack chance
+
+	Flee or counterattack choice
+	
+		Flee essentially ends the Battle
+
+		Counter attack
+			enemy chooses attack, you have the chance to choose an attack to counter with, if counter attack successful, then attack is blocked.
+	
+	
+Other Goals
+
+	Based on patron rank, control how many different cards
+
+	create some sort of leaderboard
+
+	figure out how to use discord bots
+
+	People with badges can use special stuff in game.
+
+	Ability to switch card
+		
+	Reset Button
+
+
+SIDE PROJECTS
+
+Use Discord Bots to do stuff
+
+	monthly draws
+
+	Display achievements
