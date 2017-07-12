@@ -12,6 +12,10 @@ bgm.volume = 0.25;
 var s_vol = 0.25;
 var showButtons = true;
 var gameOver = false;
+var chanceToCounterFemmeAttack = 0;//0 allows counter attacks all the time, 100 never allows counter attacks;
+var nextAttackSelectionIsCounterAttack = false;
+var femmeAttackToCounter = "anecdote";
+var femmeAttackToCounterInt = 0;
 
 function select(selected, mon) {
     document.getElementsByTagName("body")[0].style = "overflow-y: hidden";
@@ -21,8 +25,8 @@ function select(selected, mon) {
     badgerCard.classList.add("selected");
     badgerCard.removeAttribute("onclick");
 
-    for(var i = 0; i < b.length; i++) {
-        if(!b[i].classList.contains("selected"))
+    for (var i = 0; i < b.length; i++) {
+        if (!b[i].classList.contains("selected"))
             b[i].style.display = "none";
     }
 
@@ -39,11 +43,10 @@ function select(selected, mon) {
     document.getElementById("title").innerHTML = badger.name + " vs. " + femme.name;
     bgm.play();
 
-    var xmlhttp=new XMLHttpRequest();
+    var xmlhttp = new XMLHttpRequest();
 
-    xmlhttp.onreadystatechange = function()
-    {
-        if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(this.responseText);
             window.messages = json;
         }
@@ -53,31 +56,36 @@ function select(selected, mon) {
 
     var btns = document.getElementById("buttons").style;
     btns.display = "none";
-    sleep(2000).then(() => { 
+    sleep(2000).then(() => {
         document.getElementById("box").classList.add("rise");
         sleep(1000).then(() => {
-            if(femme.initiative >= badger.initiative) attackBadger();
+            if (femme.initiative >= badger.initiative) attackBadger();
             else btns.display = "block";
         });
     });
 }
 
 function updateHP(ent, amount) {
-    for(i = 0; i < ent.children.length; ++i) {
-        if(ent.children[i].className == "health") {
+    for (i = 0; i < ent.children.length; ++i) {
+        if (ent.children[i].className == "health") {
             ent.children[i].innerHTML = "";
-            for(h = 0; h < 3; ++h) {
+            for (h = 0; h < 3; ++h) {
                 var elem = ent.children[i].appendChild(document.createElement("img"));
                 elem.setAttribute("src", "i/heart.svg");
-                if(h >= amount) elem.setAttribute("style", "opacity: 0;");
+                if (h >= amount) elem.setAttribute("style", "opacity: 0;");
             }
         }
     }
 }
 
 //called whenever a femmémon attacks before it makes a hit. It'll return whether the counter succeeds or not.
-function counter() {
+function counter(selectedStat) {
 
+    //roll chance to see if badger gets chance ot attack
+    if (Math.floor(Math.random() * 100) >= chanceToCounterFemmeAttack) {
+        displayMessage(selectedStat, "chooseCounter", false, false);
+        return true;
+    }
     return false;
 }
 
@@ -90,13 +98,13 @@ function attackBadger() {
     var selectedStat = 0;
 
     //always select strongest stat
-    for(i = 0; i < 4; ++i) {
-        if(femme.stats[femmeAttacks[i]] >= femme.stats[femmeAttacks[selectedStat]])
+    for (i = 0; i < 4; ++i) {
+        if (femme.stats[femmeAttacks[i]] >= femme.stats[femmeAttacks[selectedStat]])
             selectedStat = i;
     }
 
     //calculate if special is used
-    if(femme.hp == 1 && !Math.floor(Math.random() * 100 - (femme.initiative * 5))) {
+    if (femme.hp == 1 && !Math.floor(Math.random() * 100 - (femme.initiative * 5))) {
         type = "special";
         hit(badgeCard);
         updateHP(badgeCard, 0); //instakill
@@ -104,23 +112,29 @@ function attackBadger() {
         return;
     }
 
-    if(badger.stats[badgerAttacks[selectedStat]] > femme.stats[femmeAttacks[selectedStat]]) {
-        hit(femmeCard);
-        //updateHP(femmeCard, --femme.hp);
-        femme.stats[femmeAttacks[selectedStat]]++;
-        def = true;
-    }
-    else if(badger.stats[badgerAttacks[selectedStat]] < femme.stats[femmeAttacks[selectedStat]]) {
-        hit(badgerCard);
-        updateHP(badgerCard, --badger.hp);
-        success = true;
-    }
-    else {
-        type = "parry";
-        success = true;
-    }
+    //badger gets possible chance to counter
+    attemptedCounterAttack = counter(selectedStat);
 
-    displayMessage(femmeAttacks[selectedStat], type, success, def);
+    if (!attemptedCounterAttack) {
+        nextAttackSelectionIsCounterAttack = false;
+        if (badger.stats[badgerAttacks[selectedStat]] > femme.stats[femmeAttacks[selectedStat]]) {
+            hit(femmeCard);
+            //updateHP(femmeCard, --femme.hp);
+            femme.stats[femmeAttacks[selectedStat]]++;
+            def = true;
+        }
+        else if (badger.stats[badgerAttacks[selectedStat]] < femme.stats[femmeAttacks[selectedStat]]) {
+            hit(badgerCard);
+            updateHP(badgerCard, --badger.hp);
+            success = true;
+        }
+        else {
+            type = "parry";
+            success = true;
+        }
+
+        displayMessage(femmeAttacks[selectedStat], type, success, def);
+    }
 }
 
 //called by the user/badgemon when they attack femmemons
@@ -130,32 +144,76 @@ function attackFemme(stat) {
     var def = false;
     playerLastAttack = true;
 
-    //calculate if special is used
-    if(badger.hp == 1 && !Math.floor(Math.random() * 100 - (badger.initiative * 5))) {
-        type = "special";
-        hit(femmeCard);
-        updateHP(femmeCard, 0); //instakill
+    //if we're dealing with a counter attack and not a normal attack
+    if (nextAttackSelectionIsCounterAttack) {
+
+        nextAttackSelectionIsCounterAttack = false;
+        playerLastAttack = false; //countering an attack doesn't count as attacking the femme
+
+        //if user selected correct attack
+        if ((badgerAttacks[stat] == "knowledge" && femmeAttackToCounter == "anecdote") ||
+            (badgerAttacks[stat] == "humor" && femmeAttackToCounter == "insult") ||
+            (badgerAttacks[stat] == "logic" && femmeAttackToCounter == "outrage") ||
+            (badgerAttacks[stat] == "agency" && femmeAttackToCounter == "damsel")) {
+            //counter attack is succesful
+            hit(femmeCard);
+            displayMessage(femmeAttacks[stat], "counterSuccess", false, false);
+        }
+        else {
+            //counter attack is not succesful and femme attacks as normal
+            //need to get the stat idx for the input "stat"
+
+            //displayMessage(femmeAttacks[femmeAttackToCounterInt], "counterFail", false, false); TODO get this to say you failed your counter attack
+            if (badger.stats[badgerAttacks[femmeAttackToCounterInt]] > femme.stats[femmeAttacks[femmeAttackToCounterInt]]) {
+                hit(femmeCard);
+                //updateHP(femmeCard, --femme.hp);
+                femme.stats[femmeAttacks[femmeAttackToCounterInt]]++;
+                def = true;
+            }
+            else if (badger.stats[badgerAttacks[femmeAttackToCounterInt]] < femme.stats[femmeAttacks[femmeAttackToCounterInt]]) {
+                hit(badgerCard);
+                updateHP(badgerCard, --badger.hp);
+                success = true;
+            }
+            else {
+                type = "parry";
+                success = true;
+            }
+            displayMessage(femmeAttacks[femmeAttackToCounterInt], type, success, def);
+            return;
+        }
+
+    }
+    else {
+        //calculate if special is used
+        if (badger.hp == 1 && !Math.floor(Math.random() * 100 - (badger.initiative * 5))) {
+            type = "special";
+            hit(femmeCard);
+            updateHP(femmeCard, 0); //instakill
+            displayMessage(badgerAttacks[stat], type, success, def);
+            return;
+        }
+
+        if (badger.stats[badgerAttacks[stat]] > femme.stats[femmeAttacks[stat]]) {
+            def = true;
+            success = true;
+            hit(femmeCard);
+            updateHP(femmeCard, --femme.hp);
+            femme.stats[femmeAttacks[stat]]++;
+        }
+        else if (badger.stats[badgerAttacks[stat]] < femme.stats[femmeAttacks[stat]]) {
+            hit(badgerCard);
+            //updateHP(badgerCard, --badger.hp);
+        }
+        else {
+            type = "parry";
+            success = false;
+        }
         displayMessage(badgerAttacks[stat], type, success, def);
         return;
     }
 
-    if(badger.stats[badgerAttacks[stat]] > femme.stats[femmeAttacks[stat]]) {
-        def = true;
-        success = true;
-        hit(femmeCard);
-        updateHP(femmeCard, --femme.hp);
-        femme.stats[femmeAttacks[stat]]++;
-    }
-    else if(badger.stats[badgerAttacks[stat]] < femme.stats[femmeAttacks[stat]]) {
-        hit(badgerCard);
-        //updateHP(badgerCard, --badger.hp);
-    }
-    else {
-        type = "parry";
-        success = false;
-    }
 
-    displayMessage(badgerAttacks[stat], type, success, def);
 }
 
 function battleOver(win) {
@@ -171,7 +229,7 @@ function hit(ent) {
     //var s_moan = new Audio(s_moans[Math.floor(Math.random() * s_moans.length)]);
     //s_moan.volume = s_vol;
     //s_moan.play();
-    sleep(500).then (() => {
+    sleep(500).then(() => {
         ent.classList.remove("hit");
     });
 }
@@ -185,22 +243,43 @@ function displayMessage(stat, type, success, def) {
         msgbox.style.display = "block";
     });
 
-    var rand = Math.floor(Math.random() * messages[stat].length);
-    var message = messages[stat][rand];
 
-    if(type == "win") {
+    var message = "";
+
+    //if its not a counter, then we need to get a specific attack message
+    if (type == "chooseCounter" || type == "counterSuccess" || type == "counterFail") {
         message = "";
-        if(success) message += badger.messages.win + "<br/><br/>" + femme.messages.lose;
+    }
+    //else counter messages will be populated
+    else {
+        var rand = Math.floor(Math.random() * messages[stat].length);
+        message = messages[stat][rand];
+
+    }
+
+    if (type == "win") {
+        message = "";
+        if (success) message += badger.messages.win + "<br/><br/>" + femme.messages.lose;
         else message += femme.messages.win + "<br/><br/>" + badger.messages.lose;
         //after some time, or present an X, return user to sims page.
     }
-    else if(type == "parry") {
-        if(success) message += "<br/><br/>%bname% parried the attack.";
+    else if (type == "parry") {
+        if (success) message += "<br/><br/>%bname% parried the attack.";
         else message += "<br/><br/>%fname% parried the attack."
     }
-    else if(type == "") {
-        if(!success) message += "<br/>It wasn't very effective...";
-        else if(def) message += "<br/>%fname% gets stronger against these attacks!";
+    else if (type == "chooseCounter") {
+        message += "%fname% is attempting to attack with " + femmeAttacks[stat];
+        message += "<br/>What do you choose to counter with?";
+    }
+    else if (type == "counterSuccess") {
+        message += "%bname% successfully countered %fname%'s attack!";
+    }
+    else if (type == "counterFail") {
+        message += "%bname% failed to counter %fname%'s attack!";
+    }
+    else if (type == "") {
+        if (!success) message += "<br/>It wasn't very effective...";
+        else if (def) message += "<br/>%fname% gets stronger against these attacks!";
     }
 
     message = message.replace(/%bname%/g, badger["name"]);
@@ -213,22 +292,31 @@ function displayMessage(stat, type, success, def) {
             sleep(10).then(() => { //with a delay of 10ms between characters
                 msgbox.innerHTML = message.substring(0, i);
                 i++;
-                if(i <= message.length) {
+                if (i <= message.length) {
                     loop();
                 }
                 else {
                     sleep(3500).then(() => { //then hide the message 3.5s after the last character is shown
-                        if(showButtons) {
+                        if (showButtons || type == "chooseCounter") {
                             msgbox.innerHTML = "";
                             msgbox.style.display = "none";
                             buttons.display = "block";
                             buttons.opacity = "1";
                         }
 
-                        if(femme.hp <= 0 && !gameOver) battleOver(true);
-                        else if(badger.hp <= 0 && !gameOver) battleOver(false);
+                        //if we need to select a counter attack
+                        if (type == "chooseCounter") {
+                            nextAttackSelectionIsCounterAttack = true;
+                            femmeAttackToCounter = femmeAttacks[stat];
+                            femmeAttackToCounterInt = stat;
+                        }
+                        else if (type == "counterFail" || type == "counterSuccess") {
+                            //do nothing case
+                        }
+                        else if (femme.hp <= 0 && !gameOver) battleOver(true);
+                        else if (badger.hp <= 0 && !gameOver) battleOver(false);
                         else {
-                            if(playerLastAttack && !gameOver) { attackBadger(); }
+                            if (playerLastAttack && !gameOver) { attackBadger(); }
                         }
                     });
                 }
