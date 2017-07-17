@@ -17,6 +17,8 @@ var nextAttackSelectionIsCounterAttack = false;
 var femmeAttackToCounter = "anecdote";
 var femmeAttackToCounterInt = 0;
 var femmeCountdownTillStrongestAttackAvailable = 0;
+const femmeMinTurnCooldown = 2;
+const femmeMaxTurnCooldown = 3;
 
 function select(selected, mon) {
     document.getElementsByTagName("body")[0].style = "overflow-y: hidden";
@@ -105,16 +107,28 @@ function attackBadger() {
             selectedStat = i;
     }
 
+    //if femme is still not on cooldown
     if(femmeCountdownTillStrongestAttackAvailable == 0)
     {
-        
-        // femmeCountdownTillStrongestAttackAvailable = random int, time till strongest attack recharges
+        femmeCountdownTillStrongestAttackAvailable = Math.floor(Math.random() * femmeMaxTurnCooldown) + femmeMinTurnCooldown;
     }
+    //choose another attack that is not the strongest attack
     else
     {
-        //choose another attack that is not the strongest attack
-        //selectedStat = new attack
-        //femmeCountdownTillStrongestAttackAvailable--;
+        var possibleAttackInts = [];
+        for(ii = 0; ii < 4; ii++)
+        {
+            if(ii != selectedStat)
+            {
+                possibleAttackInts.push(ii);
+            }
+        }
+        
+        var attackIdx = Math.floor(Math.random() * 2) + 0;
+        //selectedStat is now the new attack
+        selectedStat = possibleAttackInts[attackIdx];
+        //decrement countdown till femme can use strongest attack again
+        femmeCountdownTillStrongestAttackAvailable--;
     }
 
     //calculate if special is used
@@ -199,7 +213,8 @@ function attackFemme(stat) {
 
     }
     else {
-        //calculate if special is used
+        //calculate if special is used by femme
+        //TODO: create function for this code so it isn't copied, just incase in the future we change stuff
         if (badger.hp == 1 && !Math.floor(Math.random() * 100 - (badger.initiative * 5))) {
             type = "special";
             hit(femmeCard);
