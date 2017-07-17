@@ -1,0 +1,12 @@
+Femme cannot attack with the same attack twice in a row.
+	uses strongest attack, has to use other attacks while strongest attack recharges
+	strongest attack recharges after 2-3 turns
+	
+Implement Flee Button
+
+Implement Badger Special Attack
+	Combo different per badger card
+	Randomize the damage dealt, 2-3
+	Doesn't happen every single time
+
+Look into playing game via github website

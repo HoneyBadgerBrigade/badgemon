@@ -1,8 +1,7 @@
 Task List
 
 	7/17/17: Counter-Attack Framework setup
-	
-
+	7/24/17: Badger Special Attack Framework, Fleet Button, Femme Strong attack Recharge
 
 Basic Information
 
