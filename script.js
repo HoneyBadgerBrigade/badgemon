@@ -16,6 +16,7 @@ var chanceToCounterFemmeAttack = 0;//0 allows counter attacks all the time, 100 
 var nextAttackSelectionIsCounterAttack = false;
 var femmeAttackToCounter = "anecdote";
 var femmeAttackToCounterInt = 0;
+var femmeCountdownTillStrongestAttackAvailable = 0;
 
 function select(selected, mon) {
     document.getElementsByTagName("body")[0].style = "overflow-y: hidden";
@@ -98,9 +99,22 @@ function attackBadger() {
     var selectedStat = 0;
 
     //always select strongest stat
-    for (i = 0; i < 4; ++i) {
+    for (i = 0; i < 4; ++i) 
+    {
         if (femme.stats[femmeAttacks[i]] >= femme.stats[femmeAttacks[selectedStat]])
             selectedStat = i;
+    }
+
+    if(femmeCountdownTillStrongestAttackAvailable == 0)
+    {
+        
+        // femmeCountdownTillStrongestAttackAvailable = random int, time till strongest attack recharges
+    }
+    else
+    {
+        //choose another attack that is not the strongest attack
+        //selectedStat = new attack
+        //femmeCountdownTillStrongestAttackAvailable--;
     }
 
     //calculate if special is used
