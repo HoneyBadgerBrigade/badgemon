@@ -68,6 +68,20 @@ function select(selected, mon) {
     });
 }
 
+function  flee()
+{
+    //flee from battle
+
+    //stop bgm
+    bgm.pause();
+    bgm.currentTime = 0;
+
+    //reset back to original screen
+    location.reload();
+
+    //TODO: keep same femmon somehow, most likely going to need to do some other logic besides "reloading" the webpage
+}
+
 function updateHP(ent, amount) {
     for (i = 0; i < ent.children.length; ++i) {
         if (ent.children[i].className == "health") {

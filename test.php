@@ -84,11 +84,11 @@
             <div id="options">
                 <div id="message"></div>
                 <ul>
-                    <li onclick="counter(0);">Knowledge</li>
-                    <li onclick="counter(1);">Humour</li>
-                    <li onclick="counter(2);">Logic</li>
-                    <li onclick="counter(3);">Agency</li>
-                    <li onclick="counter(-1);">Flee</li>
+                    <li onclick="counter(0);">Knowledge C</li>
+                    <li onclick="counter(1);">Humour C</li>
+                    <li onclick="counter(2);">Logic C</li>
+                    <li onclick="counter(3);">Agency C</li>
+                    <li onclick="counter(-1);">Flee C</li>
                 </ul>
             </div>
         </div>
