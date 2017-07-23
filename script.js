@@ -19,6 +19,8 @@ var femmeAttackToCounterInt = 0;
 var femmeCountdownTillStrongestAttackAvailable = 0;
 const femmeMinTurnCooldown = 2;
 const femmeMaxTurnCooldown = 3;
+var badgerAttackHistory = [];
+var badgerChanceToSpecialAttack = 0; //0 allows counter attacks all the time, 100 never allows counter attacks;
 
 function select(selected, mon) {
     document.getElementsByTagName("body")[0].style = "overflow-y: hidden";
@@ -150,6 +152,7 @@ function attackBadger() {
         type = "special";
         hit(badgeCard);
         updateHP(badgeCard, 0); //instakill
+        badger.hp = 0;
         displayMessage(femmeAttacks[selectedStat], type, success, def);
         return;
     }
@@ -193,10 +196,8 @@ function attackFemme(stat) {
         playerLastAttack = false; //countering an attack doesn't count as attacking the femme
 
         //if user selected correct attack
-        if ((badgerAttacks[stat] == "knowledge" && femmeAttackToCounter == "anecdote") ||
-            (badgerAttacks[stat] == "humor" && femmeAttackToCounter == "insult") ||
-            (badgerAttacks[stat] == "logic" && femmeAttackToCounter == "outrage") ||
-            (badgerAttacks[stat] == "agency" && femmeAttackToCounter == "damsel")) {
+        if (stat == femmeAttackToCounterInt)
+        {
             //counter attack is succesful
             hit(femmeCard);
             displayMessage(femmeAttacks[stat], "counterSuccess", false, false);
@@ -227,14 +228,50 @@ function attackFemme(stat) {
 
     }
     else {
-        //calculate if special is used by femme
         //TODO: create function for this code so it isn't copied, just incase in the future we change stuff
-        if (badger.hp == 1 && !Math.floor(Math.random() * 100 - (badger.initiative * 5))) {
+        //This code is outdated, badgers now have special attack combos
+        /*if (badger.hp == 1 && !Math.floor(Math.random() * 100 - (badger.initiative * 5))) {
             type = "special";
             hit(femmeCard);
             updateHP(femmeCard, 0); //instakill
             displayMessage(badgerAttacks[stat], type, success, def);
             return;
+        }*/
+
+        //update badger attack history
+        badgerAttackHistory.push(stat);
+
+        //look at past 3 badger attacks to see if they match the specific badger's combo
+        if(badgerAttackHistory.length >= 3)
+        {
+            var badgerLastThreeAttacks = [];
+            //get last 3 badger attacks
+            for(ii = badgerAttackHistory.length-1; ii >= 0; ii--)
+            {            
+                badgerLastThreeAttacks.push(badgerAttackHistory[ii]);
+                //once we get the three attacks, break off
+                if(badgerLastThreeAttacks.length == 3)
+                {
+                    break;
+                }
+            }
+            //flip the array so it's facing the order the attacks actually happened in
+            badgerLastThreeAttacks.reverse();
+
+            //compare badger special attack order to last three attacks
+            if(badger.specialSequence[0] == badgerLastThreeAttacks[0] &&
+                badger.specialSequence[1] == badgerLastThreeAttacks[1] &&
+                badger.specialSequence[2] == badgerLastThreeAttacks[2] )
+            {
+                //execute special attack
+                type = "special";
+                hit(femmeCard);
+                updateHP(femmeCard, 0); //instakill
+                femme.hp = 0;
+                success = true;
+                displayMessage(badgerAttacks[stat], type, success, def);
+                return;
+            }
         }
 
         if (badger.stats[badgerAttacks[stat]] > femme.stats[femmeAttacks[stat]]) {
@@ -305,6 +342,11 @@ function displayMessage(stat, type, success, def) {
         if (success) message += badger.messages.win + "<br/><br/>" + femme.messages.lose;
         else message += femme.messages.win + "<br/><br/>" + badger.messages.lose;
         //after some time, or present an X, return user to sims page.
+    }
+    else if(type == "special")
+    {
+        message = "%bname% uses Special Attack";
+        // TODO: get badger special attack text        
     }
     else if (type == "parry") {
         if (success) message += "<br/><br/>%bname% parried the attack.";
