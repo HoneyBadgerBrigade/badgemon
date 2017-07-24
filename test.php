@@ -50,7 +50,7 @@
     $mons = json_decode($contents, true);
     $contents = "";
 
-    $uuid = strtolower(substr(com_create_guid(), 1, 36));
+    //$uuid = strtolower(substr(com_create_guid(), 1, 36));
     //echo $uuid . "<br/>";
 
     if(mysqli_connect_errno())
