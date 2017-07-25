@@ -1,4 +1,4 @@
-function [win] = main (badger, femme)
+function [win] = main (badger, femme,CAChance,CASuccessChance)
 
   win = false;
   
