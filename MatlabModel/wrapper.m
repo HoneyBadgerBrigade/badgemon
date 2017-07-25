@@ -38,7 +38,7 @@ for badgerIdx = 1:length(badgerTest)
     % percentages
     for caPercIdx = 1:length(CounterAttackChancePercentage)
       for caSuccIdx = 1:length(CounterAttackChanceSuccessPercentage)
-      % call main.m    
+				% call main.m    
         result = main(badgerTest(badgerIdx),femmeTest(femmeIdx),...
         CounterAttackChancePercentage(caPercIdx), ...
         CounterAttackChanceSuccessPercentage(caSuccIdx))
