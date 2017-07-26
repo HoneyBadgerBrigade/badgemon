@@ -23,7 +23,7 @@ femmeTest(1).agency = 7;
 femmeTest(1).hp = 3;
 
 % setup percentages for counter and special attack, and percentage that badger would succesffully counter attack
-CounterAttackChancePercentage = 0:25:100;
+CounterAttackChancePercentage = 0;%0:25:100;
 CounterAttackChanceSuccessPercentage = 100;
 
 % enable whether or not badger will choose random attacks or try to special attack each time
