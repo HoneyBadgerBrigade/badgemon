@@ -25,6 +25,8 @@ femmeTest(1).hp = 3;
 % setup percentages for counter and special attack, and percentage that badger would succesffully counter attack
 CounterAttackChancePercentage = 0;%0:25:100;
 CounterAttackChanceSuccessPercentage = 100;
+NumRunsPerSetOfInputs = 1000;
+results = [];
 
 % enable whether or not badger will choose random attacks or try to special attack each time
 % or if badger learns
@@ -39,9 +41,12 @@ for badgerIdx = 1:length(badgerTest)
     for caPercIdx = 1:length(CounterAttackChancePercentage)
       for caSuccIdx = 1:length(CounterAttackChanceSuccessPercentage)
 				% call main.m    
-        result = main(badgerTest(badgerIdx),femmeTest(femmeIdx),...
-        CounterAttackChancePercentage(caPercIdx), ...
-        CounterAttackChanceSuccessPercentage(caSuccIdx))
+				for idx = 1:NumRunsPerSetOfInputs
+					result = main(badgerTest(badgerIdx),femmeTest(femmeIdx),...
+					CounterAttackChancePercentage(caPercIdx), ...
+					CounterAttackChanceSuccessPercentage(caSuccIdx));
+					results(end+1) = result;
+				end
       end
     end
   end
