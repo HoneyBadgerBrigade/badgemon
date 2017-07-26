@@ -1,6 +1,8 @@
 clear all;
 close all;
 
+tic;
+
 rowIdx = 1;
 DataOut{rowIdx,1} = 'Badger';
 DataOut{rowIdx,2} = 'Femme';
@@ -19,35 +21,27 @@ rowIdx = rowIdx + 1;
 % load badgers and femmes
 % TODO Replace with list
 
-badgerTest(1).name = 'Harambe';
-badgerTest(1).initiative = 1;
-badgerTest(1).knowledge = 7;
-badgerTest(1).humour = 7;
-badgerTest(1).logic = 10;
-badgerTest(1).agency = 8;
-badgerTest(1).hp = 3;
-
-femmeTest(1).name = 'DF';
-femmeTest(1).initiative = 4;
-femmeTest(1).knowledge = 10;
-femmeTest(1).humour = 8;
-femmeTest(1).logic = 7;
-femmeTest(1).agency = 7;
-femmeTest(1).hp = 3;
+badgerTest = getBadgers();
+femmeTest = getFemmes();
 
 % setup percentages for counter and special attack, and percentage that badger would succesffully counter attack
-CounterAttackChancePercentage = 0;%0:25:100;
+CounterAttackChancePercentage = 0:25:100;
 CounterAttackChanceSuccessPercentage = 100;
-NumRunsPerSetOfInputs = 1000;
+NumRunsPerSetOfInputs = 100;
 results = [];
 
 % enable whether or not badger will choose random attacks or try to special attack each time
 % or if badger learns
 
+waitHan = waitbar(0,'Running Statistical Analysis')
+totalRuns = length(badgerTest) * length(femmeTest) * ...
+						length(CounterAttackChancePercentage) * ...
+						length(CounterAttackChanceSuccessPercentage) * ...
+						NumRunsPerSetOfInputs;
 
+runIdx = 0;
 %% loop over everything
 % badger
-
 for badgerIdx = 1:length(badgerTest)
   % femme
   for femmeIdx = 1:length(femmeTest)
@@ -60,6 +54,9 @@ for badgerIdx = 1:length(badgerTest)
 					CounterAttackChancePercentage(caPercIdx), ...
 					CounterAttackChanceSuccessPercentage(caSuccIdx));
 					results(end+1) = result;
+					runIdx = runIdx + 1;
+					waitbar(runIdx/totalRuns,waitHan);
+					
 				end
 				
 				% Output Row
@@ -81,6 +78,8 @@ end
 fid = fopen ('TestResults.csv', 'wt');
 fprintf (fid,'%s, %s, %s, %s, %s, %s\n', DataOut{1,:})
 for ii = 2:rowIdx-1
-	fprintf (fid,'%s, %s, %f, %f, %f, %f', DataOut{ii,:})
+	fprintf (fid,'%s, %s, %f, %f, %f, %f\n', DataOut{ii,:})
 end
 fclose (fid);
+close(waitHan);
+toc;
