@@ -1,6 +1,18 @@
 clear all;
 close all;
 
+rowIdx = 1;
+DataOut{rowIdx,1} = 'Badger';
+DataOut{rowIdx,2} = 'Femme';
+DataOut{rowIdx,3} = 'Counter Chance';
+DataOut{rowIdx,4} = 'Counter Success Chance';
+% DataOut{rowIdx,4} = 'Badger Special Used Percentage';
+% DataOut{rowIdx,4} = 'Femme Special Used Percentage';
+% DataOut{rowIdx,4} = 'No Special Used Percentage';
+DataOut{rowIdx,5} = 'Badger Win Percentage';
+
+rowIdx = rowIdx + 1;
+
 %% this function will call main.m by providing badgemons and femme
 
 % load badgers and femmes
@@ -34,6 +46,7 @@ results = [];
 
 %% loop over everything
 % badger
+
 for badgerIdx = 1:length(badgerTest)
   % femme
   for femmeIdx = 1:length(femmeTest)
@@ -47,7 +60,25 @@ for badgerIdx = 1:length(badgerTest)
 					CounterAttackChanceSuccessPercentage(caSuccIdx));
 					results(end+1) = result;
 				end
+				
+				% Output Row
+				DataOut{rowIdx,1} = badgerTest(badgerIdx).name;
+				DataOut{rowIdx,2} = femmeTest(femmeIdx).name;
+				DataOut{rowIdx,3} = CounterAttackChancePercentage(caPercIdx);
+				DataOut{rowIdx,4} = CounterAttackChanceSuccessPercentage(caSuccIdx);
+				DataOut{rowIdx,5} = length(find(results == 1))/length(results) * 100;
+				
+				rowIdx = rowIdx + 1;
+				
       end
     end
   end
 end
+
+% write output file
+fid = fopen ('testingFile.csv', 'wt');
+fprintf (fid,'%s, %s, %s, %s, %s\n', DataOut{1,:})
+for ii = 2:rowIdx-1
+	fprintf (fid,'%s, %s, %f, %f, %f', DataOut{ii,:})
+end
+fclose (fid);

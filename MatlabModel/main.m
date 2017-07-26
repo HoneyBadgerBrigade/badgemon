@@ -50,6 +50,8 @@ function [win] = main (badger, femme,CAChance,CASuccessChance)
 			attackSuccess = getAttackSuccess(badger,femme,attack);
 			if(attackSuccess)
 				femme = cardHit(femme);
+				% femme gets stronger against attacks that hit
+				femme = femmeDefenseUp(femme,attack);
 			end
 			
 			femmeAttack = ~femmeAttack;
