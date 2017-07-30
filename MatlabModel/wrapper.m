@@ -28,12 +28,11 @@ femmeTest = getFemmes();
 CounterAttackChancePercentage = 0:25:100;
 CounterAttackChanceSuccessPercentage = 100;
 NumRunsPerSetOfInputs = 100;
-results = [];
 
 % enable whether or not badger will choose random attacks or try to special attack each time
 % or if badger learns
 
-waitHan = waitbar(0,'Running Statistical Analysis')
+waitHan = waitbar(0,'Running Statistical Analysis');
 totalRuns = length(badgerTest) * length(femmeTest) * ...
 						length(CounterAttackChancePercentage) * ...
 						length(CounterAttackChanceSuccessPercentage) * ...
@@ -49,13 +48,15 @@ for badgerIdx = 1:length(badgerTest)
     for caPercIdx = 1:length(CounterAttackChancePercentage)
       for caSuccIdx = 1:length(CounterAttackChanceSuccessPercentage)
 				% call main.m    
+				results = [];
 				for idx = 1:NumRunsPerSetOfInputs
 					result = main(badgerTest(badgerIdx),femmeTest(femmeIdx),...
 					CounterAttackChancePercentage(caPercIdx), ...
 					CounterAttackChanceSuccessPercentage(caSuccIdx));
 					results(end+1) = result;
 					runIdx = runIdx + 1;
-					waitbar(runIdx/totalRuns,waitHan);
+					str = ['Processing: ' badgerTest(badgerIdx).name ' vs. ' femmeTest(femmeIdx).name];
+					waitbar(runIdx/totalRuns,waitHan,str);
 					
 				end
 				

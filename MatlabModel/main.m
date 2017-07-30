@@ -12,7 +12,7 @@ function [win] = main (badger, femme,CAChance,CASuccessChance)
   
   femmeAttack = femme.initiative >= badger.initiative;
 	
-	femmeAttackCooldown = 0;
+	femmeAttackCooldown = 0;	
   
   while(~gameFinished)  
 		if(femmeAttack) % femme attack

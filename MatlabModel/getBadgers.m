@@ -1,4 +1,5 @@
 function [badgers] = getBadgers ()
+
 	badgers(1).name = 'Harambe';
 	badgers(1).initiative = 1;
 	badgers(1).knowledge = 7;
@@ -51,7 +52,7 @@ function [badgers] = getBadgers ()
 	badgers(7).initiative = 8;
 	badgers(7).knowledge = 6;
 	badgers(7).humour = 4;
-	badgers(7).logic = 8;
+	badgers(7).logic = 10;
 	badgers(7).agency = 7;
 	badgers(7).hp = 3;
 
