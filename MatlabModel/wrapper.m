@@ -27,7 +27,7 @@ femmeTest = getFemmes();
 % setup percentages for counter and special attack, and percentage that badger would succesffully counter attack
 CounterAttackChancePercentage = 0:5:100;
 CounterAttackChanceSuccessPercentage = 100;
-NumRunsPerSetOfInputs = 1000;
+NumRunsPerSetOfInputs = 400;
 
 % enable whether or not badger will choose random attacks or try to special attack each time
 % or if badger learns
@@ -89,6 +89,9 @@ plotMinMeanMaxWinChance(DataOut,true);
 plotMinMeanMaxWinChance(DataOut,false);
 plotMinMeanMaxWinChanceCombined(DataOut,true);
 plotMinMeanMaxWinChanceCombined(DataOut,false);
+
+% Convert DataOut to a different table
+TransposeDataOutTable(DataOut);
 
 close(waitHan);
 toc;
