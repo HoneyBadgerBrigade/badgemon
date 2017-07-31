@@ -25,9 +25,9 @@ badgerTest = getBadgers();
 femmeTest = getFemmes();
 
 % setup percentages for counter and special attack, and percentage that badger would succesffully counter attack
-CounterAttackChancePercentage = 0:25:100;
+CounterAttackChancePercentage = 0:5:100;
 CounterAttackChanceSuccessPercentage = 100;
-NumRunsPerSetOfInputs = 100;
+NumRunsPerSetOfInputs = 1000;
 
 % enable whether or not badger will choose random attacks or try to special attack each time
 % or if badger learns
@@ -82,5 +82,13 @@ for ii = 2:rowIdx-1
 	fprintf (fid,'%s, %s, %f, %f, %f, %f\n', DataOut{ii,:})
 end
 fclose (fid);
+
+% make scatter plot, x axis counter chance, y axis win percentage
+plotScatterCounterWinChance(DataOut);
+plotMinMeanMaxWinChance(DataOut,true);
+plotMinMeanMaxWinChance(DataOut,false);
+plotMinMeanMaxWinChanceCombined(DataOut,true);
+plotMinMeanMaxWinChanceCombined(DataOut,false);
+
 close(waitHan);
 toc;
